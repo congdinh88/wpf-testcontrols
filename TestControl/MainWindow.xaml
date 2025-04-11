@@ -5,8 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TestControl"
         mc:Ignorable="d"
+        xmlns:uc="clr-namespace:TestControl.ControlApp"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TextBox Height="30" Style="{StaticResource AutoComplete}"/>
+        <DataGrid x:Name="dataGrid">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Test">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Txt1}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <uc:AutoComplete 
+                                Style="{StaticResource AutoComplete}" 
+                                ItemsSource="{Binding testSuggestItems}"
+                                DisplayMemberPath="Col2"
+                                Height="30"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+                
+            </DataGrid.Columns>
+        </DataGrid>
+        <!--<uc:AutoComplete 
+            Style="{StaticResource AutoComplete}" 
+            ItemsSource="{Binding testSuggestItems}"
+            DisplayMemberPath="Col2"
+            Height="30"/>-->
     </Grid>
 </Window>
